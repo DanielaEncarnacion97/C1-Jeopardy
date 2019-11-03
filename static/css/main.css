@@ -1,0 +1,31 @@
+body {
+    /* background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed; */
+    background: url(../images/Jeopardy.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+  }
+.expand-width{
+  width: 90%;
+}
+
+.card .card-reveal{    
+  padding: 20px;
+  position: absolute;
+  background-color: #FFF;
+  width: 100%;
+  overflow-y: auto;
+  /*top: 0;*/
+  left:0;
+  bottom:0;
+  height: 100%;
+  z-index: 1;
+  display: none;    
+}
+
+.card .card-reveal p{
+  color: rgba(0, 0, 0, 0.71);
+  margin:20px ;
+}
+
