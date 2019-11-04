@@ -1,4 +1,6 @@
 import requests
+import request
+from datetime import datetime
 import json
 import pprint
 from flask import Flask, render_template, jsonify, request
@@ -10,53 +12,50 @@ from flask import Flask, render_template, jsonify, request
 # level of difficulty of the question
 # any other smart searching criteria you see fit
 
-# route me to the root / homepage
-
 app = Flask(__name__)
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    params = {
-        
-    }
-    url = "http://jservice.io/api/clues"
+    print(request.args.get('startDate'))
+    print(request.args.get('endDate'))
+    url = "http://jservice.io/api/clues/"
     response = requests.get(url)
-    response_json = response.json()
-    # res = json.dumps(response.text, sort_keys = False, indent = 2)
-    # pprint.pprint(res)
+    response_json = response.json()    
+    # print(response_json)
     return render_template('index.html',len = len(response_json), response=response_json)
 
-#     return '''
-#         <html>
-#     <head>
-#     </head>
-#     <body>
-#         <h1>response_json[question]</h1>
-#         response
-#     </body>
-# </html>
-#     '''
+@app.route('/search')
+def search():
+    params = {}
 
+    difficulty = request.args.get('difficulty')
+    category = request.args.get('category')
 
+    if difficulty.isdigit():
+        params = {
+        'min_date': request.args.get('startDate'),
+        'max_date': request.args.get('endDate'),
+        'category.title' : request.args.get('category'),
+        'value': int(request.args.get('difficulty'))
+        }
+    else:
+        params = {
+        'min_date': request.args.get('startDate'),
+        'max_date': request.args.get('endDate'),
+        'category.title' : request.args.get('category')
+        }
+    
+    url = "http://jservice.io/api/clues/"
+    response = requests.get(url, params=params)
+    response_json = response.json()  
+    return render_template('search.html', len = len(response_json), search=response_json, category=category)
 
-
-
-# def get_values(value):
-#     params = {
-#         'value': value
-#     }
-#     response = requests.get(url, params=params)
-#     response_json = response.json()
-#     # pprint.pprint(response_json)
-#     return response_json
-
-# response_json[0]
-
-# print(get_values(100)[0]['answer'])
-# print(get_values(100)[0]['value'])
-# print(get_values(100)[0]['category']['title'])
-
+@app.route('/random')
+def random():
+    url = "http://jservice.io/api/random/"
+    response = requests.get(url)
+    response_json = response.json()  
+    return render_template('random.html', len = len(response_json), random=response_json)
 
 
 if __name__ == "__main__":

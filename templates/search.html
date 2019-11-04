@@ -1,0 +1,142 @@
+<head>
+    <title>Jeopardy Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,600&display=swap" rel="stylesheet">
+
+    <!-- jQuery script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+    <script src="../static/js/script.js"></script>
+
+
+</head>
+<style>
+    .card-text {
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+    }
+
+    body {
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+        <div class="container">
+            <a class="navbar-brand" href="/">Jeopardy Trivia</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Favorite Clues</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-primary"><a
+                                href="https://github.com/DanielaEncarnacion97/C1-Jeopardy">Github</a></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="card border-0 shadow my-5">
+            <div class="card-body p-5">
+                <h1 class="font-weight-light">Search Results</h1>
+                <p class="lead"></p>
+
+                <!-- This is where I am creating the forloops in flask for the cards. -->
+
+
+                <!-- Date Picker code ends here  -->
+
+                <div class="row">
+                    {%for i in range(0, len)%}
+                    {%if search[i].question !=""%} 
+                    {% if search[i].category.title == category or category == "" %}
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="card text-center" style="height:400px">
+                            <div class="card-header">
+                                Category: {{search[i].category.title}}
+                                <button class="favorite pull-right btn" id="{{search[i].id}}"
+                                    onClick="savedQuestion(this.id)"> ⭐</button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <h5>Question:</h5> 
+                                    {{search[i]["question"]}}
+                                </p>
+                                <div class="card-reveal">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">×</span></button>
+                                    <p>{{search[i].answer}}</p>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <span class="badge badge-pill badge-info" style="margin-bottom: 5px;">Difficulty: {{search[i].value}} </span>
+                                <span class="badge badge-pill badge-info" style="margin-bottom: 5px;">Airdate: {{search[i].airdate}} </span>
+                                <button class="btn" type="button" data-container="body" data-toggle="popover" data-placement="top"
+                                    data-content="{{search[i].answer}}">
+                                    Click to reveal answer!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {%endif%}
+                    {%endif%}
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer  -->
+
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+        <div class="container text-center">
+            <small>Copyright &copy; Daniela Encarnacion</small>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

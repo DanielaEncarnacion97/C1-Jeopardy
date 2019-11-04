@@ -1,0 +1,176 @@
+<head>
+        <title>Jeopardy Game</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="../static/css/main.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,600&display=swap" rel="stylesheet">
+      
+        <!-- jQuery script -->
+      
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+      
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script
+          src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.2.2/dist/latest/bootstrap-autocomplete.min.js"></script>
+      
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
+      
+        <script src="../static/js/script.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+      
+      
+      </head>
+      <style>
+        .card-text {
+          font-family: 'Muli', sans-serif;
+          font-weight: 400;
+        }
+      
+        body {
+          font-family: 'Muli', sans-serif;
+          font-weight: 400;
+        }
+      </style>
+      
+      <script>
+        $(document).ready(function () {
+          $('[data-toggle="popover"]').popover();
+        });
+      
+        $.get('../static/categories.txt', function (data) {
+          var re = /",|',/
+          var categories = data.split(re)
+          
+      
+          var firstQuote = /"|'/
+          const ncategories = categories.map(function(category) {     
+            const ind = category.search(/("|')/)     
+            if (ind === 0) {     
+              return category.slice(1)     
+            }     
+            return category })
+          
+      
+          $("#category").autocomplete({
+            source: ncategories
+          });
+        });
+      
+      </script>
+      
+      <body>
+      
+        <!-- JS -->
+      
+        <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+                <div class="container">
+                  <a class="navbar-brand" href="/">Jeopardy Trivia</a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item active">
+                        <a class="nav-link" href="/">Home
+                          <span class="sr-only">(current)</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Favorite Clues</a>
+                      </li>
+                      <li class="nav-item">
+                        <button type="button" class="btn btn-outline-primary"><a href="https://github.com/DanielaEncarnacion97/C1-Jeopardy">Github</a></button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+      
+        <!-- Page Content -->
+        <div class="container">
+          <div class="card border-0 shadow my-5">
+            <div class="card-body p-5">
+              <h1 class="font-weight-light">Welcome to Jeopardy Trivia!</h1>
+              <p class="lead">Find clues below by searching for airdate, category, or difficulty.</p>
+      
+              <!-- This is where I am creating the forloops in flask for the cards. -->
+      
+              <!-- {{response[0]}} -->
+      
+              <div class="col-md-5" id="#sandbox-container"></div>
+      
+              <!-- Date Picker code starts here -->
+      
+              <form name="search" action="/search" onsubmit="return checkform()" method="GET" novalidate>
+                <div class="row">
+                  <div class="col-md-3">
+                    <label for="startDate">Airdate From:</label>
+                    <input name="startDate" type="date" class="form-control" id="startDate" min="1965-01-01" max="2012-12-31"
+                      required>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="endDate">Airdate To:</label>
+                    <input name="endDate" type="date" class="form-control" id="endDate" min="1965-01-01" max="2012-12-31"
+                      required>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="category">Category</label>
+                    <input name="category" type="search" class="form-control" id="category" autocomplete="off" required>
+                  </div>
+      
+      
+                  <div class="col-md-2">
+                    <label for="difficulty">Difficulty</label>
+                    <select name="difficulty" id="difficulty" class="custom-select" required>
+                      <option selected>Choose...</option>
+                      <option value="100">100</option>
+                      <option value="200">200</option>
+                      <option value="300">300</option>
+                      <option value="400">400</option>
+                      <option value="500">500</option>
+                      <option value="600">600</option>
+                      <option value="800">800</option>
+                      <option value="1000">1000</option>
+                      <option value="all">All</option>
+                    </select>
+                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                  </div>
+                  <div class="col text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                  </div>
+                </div>
+              </form>
+      
+              <!-- Date Picker code ends here  -->
+      
+      
+            
+      
+            </div>
+          </div>
+      
+      
+          <!-- Footer  -->
+      
+          <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+            <div class="container text-center">
+              <small>Copyright &copy; Daniela Encarnacion</small>
+            </div>
+          </footer>
+      
+      
+      </body>
+      
+      </html>
