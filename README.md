@@ -2,6 +2,9 @@
 
 Link: http://c1-jeopardy.herokuapp.com/
 
+IMPORTANT: On the category search, here are some categories to search by to get you started! 
+baseball, odd jobs, movies, politics, time, trivia, cars and etc.
+
 A interactive trivia based on Jeopardy clues, utilizing the JServiceIO API. 
 
 ## Summary: 
