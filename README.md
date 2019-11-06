@@ -8,6 +8,13 @@ Link: http://c1-jeopardy.herokuapp.com/
 
 **All criterias were satisfied for this project, including the 4th criteria allowing me to provide a random question search**
 
+
+- [x] date or timeframe aired (you can search by a day,  a week, a month)
+- [x] trivia category
+- [x] level of difficulty of the question
+- [x] any other smart searching criteria you see fit
+
+
 IMPORTANT: On the category search, here are some categories to search by to get you started! 
 odd jobs, movies, politics, time, trivia, cars and etc.
 
