@@ -2,6 +2,9 @@
 
 Link: http://c1-jeopardy.herokuapp.com/
 
+** NOTE **
+Known bug: pagination not fully implemented (not a requirement as per project criteria) 
+
 IMPORTANT: On the category search, here are some categories to search by to get you started! 
 odd jobs, movies, politics, time, trivia, cars and etc.
 
@@ -42,6 +45,7 @@ Flask w/ Jinja Templating
 - Create a trivia game called BEAST MODE JEOPARDY to give you varying difficulty level cards to guess the answer before time runs out
 - Learn how to convert Flask app to VueJS for more functionality 
 - Known bug: pagination not fully implemented (not a requirement as per project criteria)
+- Input Validation
 
 ## Conclusion: 
 This experience has given me the confidence that I am capable of building a web application even I haven't been exposed to technologies that were required in order for this to be possible. I am so excited and proud of the work Capital One has pushed me to do because these are not the types of projects your are introduced to in universities.
