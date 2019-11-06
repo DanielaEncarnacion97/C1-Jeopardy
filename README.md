@@ -2,8 +2,8 @@
 
 Link: http://c1-jeopardy.herokuapp.com/
 
-** NOTE **
-Known bug: pagination not fully implemented (not a requirement as per project criteria) 
+**NOTE**
+**Known bug: pagination not fully implemented (not a requirement as per project criteria)**
 
 IMPORTANT: On the category search, here are some categories to search by to get you started! 
 odd jobs, movies, politics, time, trivia, cars and etc.
