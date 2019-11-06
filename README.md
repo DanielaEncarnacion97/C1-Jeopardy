@@ -42,7 +42,7 @@ Python
 Flask w/ Jinja Templating
 
 ## Future Updates:
-- Connect localStorage function I built to a favorite web page (disabled hyperlink, currently) to save your favorite clues to a list
+- Connect localStorage function I built to a favorite web page (disabled hyperlink, currently) to save your favorite clues to a list. The current code is located in static/script.js
 - Create a trivia game called BEAST MODE JEOPARDY to give you varying difficulty level cards to guess the answer before time runs out
 - Learn how to convert Flask app to VueJS for more functionality 
 - Known bug: pagination not fully implemented (not a requirement as per project criteria)
