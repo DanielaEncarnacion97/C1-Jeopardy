@@ -6,6 +6,8 @@ Link: http://c1-jeopardy.herokuapp.com/
 
 **Known bug: pagination not fully implemented (not a requirement as per project criteria)**
 
+**All criterias were satisfied for this project, including the 4th criteria allowing me to provide a random question search**
+
 IMPORTANT: On the category search, here are some categories to search by to get you started! 
 odd jobs, movies, politics, time, trivia, cars and etc.
 
