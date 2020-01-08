@@ -60,6 +60,6 @@ Flask w/ Jinja Templating
 ## Conclusion: 
 This experience has given me the confidence that I am capable of building a web application even I haven't been exposed to technologies that were required in order for this to be possible. I am so excited and proud of the work Capital One has pushed me to do because these are not the types of projects your are introduced to in universities.
 
-I am looking forward to continue self-learning and become a better developr as well as to build on this project. Thank you for the opportunity, Capital One.
+I am looking forward to continue self-learning and become a better developer as well as to build on this project. Thank you for the opportunity, Capital One.
 
 ![](jeopardy.gif)
